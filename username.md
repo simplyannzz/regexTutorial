@@ -7,13 +7,13 @@ Regular Expression (Regex) are series of special characters that define a search
 
 ## Summary
 
-We will learn the basic of regex and the search pattern for email validation.
+We will learn the basic of regex and the search pattern for username validation.
 
-<!-- This is the breakdown for username:
+This is the breakdown for username:
 - contain any lowercase letter between a-z
 - contain any number between 0-9
 - contain underscore or hyphen
-- 3-16 characters long -->
+- 3-16 characters long
 
 Regex are universal and can be used within all programming languages.
 
