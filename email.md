@@ -36,7 +36,7 @@ Regex are universal and can be used in all programming languages.
 Regex is considered a literal, so the pattern must be wrapped in slash characters (/).
 
 "Matching an email" regex:
-/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+\/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
 
 Comment: Javascript provides two ways to create a regex object. The first, shown in the example above, uses literal notation. The second is the constructor. The constructors are not enclosed within slashes; instead, they use quotation marks.
 
@@ -51,7 +51,7 @@ The ^ anchor signifies a string that begins with the characters that follow it. 
 
 The $ anchor signifies a string that ends with the characters that precede it. It can be preceded by an exact string or a range of possible matches.
 
-So in "matching an email" regex, the string starts and ends with something that matches the pattern ([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.].
+So in "matching an email" regex, the string starts and ends with something that matches the pattern \([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.].
 
 Anchors play a vital role in defining the position of the pattern within the input string and ensuring accurate and reliable validation.
 
@@ -73,11 +73,11 @@ Quantifiers are greedy, meaning they match as many instances of particular patte
 
 Each of these quantifiers can be made lazy by adding the ? symbol after it, meaning it will match as few instances as possible.
 
-The + quantifier means "one or more" is used after the pattern [a-z0-9_\.-] captures the group ([a-z0-9_\.-]+). This means it should occur at least once, but it can also occur multiple times consecutively. This also applies to [da-z\.-].
+The + quantifier means "one or more" is used after the pattern \[a-z0-9_\.-] captures the group \([a-z0-9_\.-]+). This means it should occur at least once, but it can also occur multiple times consecutively. This also applies to \[da-z\.-].
 
 Now, let's look at how quantifiers are used in the "matching an email" regex. We have the quantifier {2,6}, meaning this sequence of 2–6 lowercase letters or dots. The email address must end with a two- to six-letter domain, such as.com,.edu, or.co.uk.
 
-Looking at this expression, /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ matches the valid email address that starts with one or more lowercase letters, digits, underscores, dots, or hyphens, followed by @, followed by more digits, lowercase letters, dots, or hyphens, followed by a period, and a two- to six-letter domain.
+Looking at this expression, \/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ matches the valid email address that starts with one or more lowercase letters, digits, underscores, dots, or hyphens, followed by @, followed by more digits, lowercase letters, dots, or hyphens, followed by a period, and a two- to six-letter domain.
 
 The regex above matches a valid email address:
 
@@ -105,13 +105,13 @@ Matching an email has three parts:
 3. Top-level domain
 
 4. Local:
-      ([a-z0-9_\.0]+), this group is the local part of the email address before the @.
+     \([a-z0-9_\.0]+), this group is the local part of the email address before the @.
 
 For example: annie_doe1!@gmail.com
 The local part is annie_doe1! This local follows a valid format by allowing a combination of lowercase, numbers, underscores, dots, and hyphens.
 
 2. Domain:
-      ([\da-z\.-]+) corresponds to and matches the domain name.
+      \([\da-z\.-]+) corresponds to and matches the domain name.
 
 The valid format is:
 
@@ -124,7 +124,7 @@ For example: mocha@mocha-domain1234.com
 This example matches the regex format.
 
 3. Top-level domain:
-       ([a-z\.]{2,6}) is the top-level domain.
+       \([a-z\.]{2,6}) is the top-level domain.
 
 For example: mocha1!@example.com
 The top level is.com.
@@ -135,14 +135,14 @@ All of those parts follow a combination of letters, numbers, dots, hyphens, and 
 
 Anything inside a set of square brackets [] represents a range of characters that we want to match. These patterns are known as bracket expressions, but they are also known as positive character groups because they outline the characters we want to include.
 
-For example, [aeiou] will look for a string that includes a, e, i, o, or u, regardless of the length of the string. All of these examples would match: "ant,", "eat", "ice", "oooh", and "under".
+For example, \[aeiou] will look for a string that includes a, e, i, o, or u, regardless of the length of the string. All of these examples would match: "ant,", "eat", "ice", "oooh", and "under".
 
-You will more commonly see a hyphen (-) used between alphanumeric characters (letters and numbers only) to represent a range of those possible characters. This means that [a-c] and [abc] will look for the exact same thing.
+You will more commonly see a hyphen (-) used between alphanumeric characters (letters and numbers only) to represent a range of those possible characters. This means that \[a-c] and \[abc] will look for the exact same thing.
 
 We can break down the bracket for "Matching an email" regex as follows:
-/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+\/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
 
-Part 1: local /^([a-z0-9_\.-]+)
+Part 1: local \/^([a-z0-9_\.-]+)
 example: mocha1!@example.com
 mocha1! is the local
 
@@ -152,7 +152,7 @@ mocha1! is the local
 - \. : matches a literal period. The blackslash is used to escape the dot since it has a special meaning in regex.
 - - : matches the hyphen character
 
-Part 2: Domain [\da-z\.-]
+Part 2: Domain \[\da-z\.-]
 example: mocha1!@example.com
 example.com is the domain.
 
@@ -161,7 +161,7 @@ example.com is the domain.
 - \. : matches the period
 - - : matches the hyphen
 
-Part 3: Top-Level Domain [a-z\.]{2,6}
+Part 3: Top-Level Domain \[a-z\.]{2,6}
 example: mocha1!@example.example.edu
 example.edu is the local
 
@@ -169,7 +169,7 @@ example.edu is the local
 - \. : dots
 - {2,6} : matches the quantifier.
 
-It is important to note that a bracket expression can be turned into a negative character group by adding the ^ to the beginning of the expression inside the brackets. A common example is matching a string that doesn't include any vowels. The pattern [^aeiouAEIOU] would find any strings that don't include lowercase or uppercase vowels.
+It is important to note that a bracket expression can be turned into a negative character group by adding the ^ to the beginning of the expression inside the brackets. A common example is matching a string that doesn't include any vowels. The pattern \[^aeiouAEIOU] would find any strings that don't include lowercase or uppercase vowels.
 
 ### OR Operator
 
@@ -177,7 +177,7 @@ The bracket expression doesn't have to meet all of the requirements in the patte
 
 We want to write the same logic outside of a bracket expression, especially within a grouping construct or between different grouping constructs.
 
-Using the OR operator |, the expression [abc] could be written as [a|b
+Using the OR operator |, the expression \[abc] could be written as [a|b
 |c]. Using our example in the grouping constructs section, we can take the original expression: (abc):(xyz), and then use the OR operator to convert it to the following: (a|b|c): (x|y|z).
 
 ### Character Classes
@@ -188,16 +188,16 @@ Some of the common character classes are:
 
 - . : matches any character except the newline character \n
 - \d : matches any arabic numberical digit. This class is equivalent to the bracket expression [0-9].
-- \w : matches any alphanumeric character from the basic Latin alphabet, including the underscore \_. This class is equivalent to the bracket expression [a-zA-Z0-9].
+- \w : matches any alphanumeric character from the basic Latin alphabet, including the underscore \_. This class is equivalent to the bracket expression \[a-zA-Z0-9].
 - \s : matches a single whitespace character, including tabs and line breaks.
 
 Each of the last character classes can be changed to perform an inverse match by capitalizing the letter character. For example, \D matches a non-digit character.
 
-In our tutorial: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ uses various regex elements, including character classes, character sets, metacharacters, and repeating character classes.
+In our tutorial: \/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ uses various regex elements, including character classes, character sets, metacharacters, and repeating character classes.
 
-Character class: \d and .. characrter sets are defined within the square brackets [a-z], [0-9], and [.-]. Those sets represent multiple characters, allowing a single character to match from the specified range. In our example, the \d is the class, and [a-z] and [A-Z] are the sets.
+Character class: \d and .. characrter sets are defined within the square brackets \[a-z], \[0-9], and [.-]. Those sets represent multiple characters, allowing a single character to match from the specified range. In our example, the \d is the class, and \[a-z] and \[A-Z] are the sets.
 
-Metacharacter is the (.). Inside some character classes, some metacharacters lose their special meaning and are treated as literals. In our email example, the (-) and (.) are metacharacters inside the [a-z0-9_.-] and [\da-z.-].
+Metacharacter is the (.). Inside some character classes, some metacharacters lose their special meaning and are treated as literals. In our email example, the (-) and (.) are metacharacters inside the \[a-z0-9_.-] and \[\da-z.-].
 
 Repeating character: The regex uses the + and {2,6} quantifiers to indicate repeating character classes.
 
